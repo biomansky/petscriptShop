@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from cat_db import insert_db
 
 URLS = ('moizver.com/catalog/item/6069/',
         'moizver.com/catalog/item/103094/',

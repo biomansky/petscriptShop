@@ -3,7 +3,7 @@ from telebot import types
 from decouple import config
 from Parse import parse
 
-API_TOKEN = config('TOKEN', )
+API_TOKEN = config('TOKEN')
 bot = telebot.TeleBot(API_TOKEN)
 
 
