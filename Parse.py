@@ -28,7 +28,7 @@ def get_content_moizver(html):
         item_price = item.find("div", attrs={"class": "cost prices clearfix"}).find('span', style="display:none;").text
         raw_list.append(f'{item_name} Цена: {item_price}')
     print(raw_list)
-    return {'moizver': raw_list}
+    return f' Магазин МОЙ ЗВЕРЬ цены: {raw_list}'
 
 
 def get_content_mirhvost(html):
@@ -40,7 +40,7 @@ def get_content_mirhvost(html):
         item_price = item.find("li", attrs={"class": "price"}).get_text(strip=True)
         raw_list.append(f'{item_name} {item_price[0:-3]}')
     print(raw_list)
-    return {'mirhvost': raw_list}
+    return f' Магазин МИР ХВОСТАТЫХ цены: {raw_list}'
 
 
 def parse():
@@ -57,6 +57,3 @@ def parse():
                 get_content_mirhvost(html.text)
             else:
                 print('404 error')
-
-
-parse()
