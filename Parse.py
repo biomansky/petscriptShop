@@ -22,26 +22,20 @@ def get_html(url, params=None):
 def get_content_moizver(html):
     soup = BeautifulSoup(html, 'html.parser')
     content_page = soup.find_all("div", attrs={'class': "wraps hover_shine"})
-    raw_list = []
     for item in content_page:
         item_name = item.find("div", attrs={"class": "page-top-main"}).find(
             'h1', attrs={"id": "pagetitle"}).get_text(strip=True)
         item_price = item.find("div", attrs={"class": "cost prices clearfix"}).find('span', style="display:none;").text
-        raw_list.append(f'{item_name} Цена: {item_price}')
-    print(raw_list)
-    return f' Магазин МОЙ ЗВЕРЬ цены: {raw_list}'
+        insert_db(item_name=item_name, shop_name="Мой Зверь", item_price=item_price)
 
 
 def get_content_mirhvost(html):
     soup = BeautifulSoup(html, 'html.parser')
     content_page = soup.find_all("div", attrs={'id': "catalogElement"})
-    raw_list = []
     for item in content_page:
         item_name = item.find("h1", attrs={"itemprop": "name"}).get_text(strip=True)
         item_price = item.find("li", attrs={"class": "price"}).get_text(strip=True)
-        raw_list.append(f'{item_name} {item_price[0:-3]}')
-    print(raw_list)
-    return f' Магазин МИР ХВОСТАТЫХ цены: {raw_list}'
+        insert_db(item_name=item_name, shop_name="Мир Хвостатых", item_price=item_price)
 
 
 def parse():
@@ -58,3 +52,6 @@ def parse():
                 get_content_mirhvost(html.text)
             else:
                 print('404 error')
+
+
+parse()
