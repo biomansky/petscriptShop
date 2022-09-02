@@ -98,5 +98,3 @@ def price_diff_db():
     except errors.UndefinedTable:
         create_db()
 
-
-x = price_diff_db()
